@@ -17,6 +17,8 @@
 package org.asteriskjava.fastagi;
 
 import org.asteriskjava.fastagi.command.AgiCommand;
+import org.asteriskjava.fastagi.internal.AgiReader;
+import org.asteriskjava.fastagi.internal.AgiWriter;
 import org.asteriskjava.fastagi.reply.AgiReply;
 
 
@@ -823,4 +825,18 @@ public interface AgiChannel
      */
     public void gosub(String context, String extension, String priority, String... arguments) throws AgiException;
 
+    
+    /**
+     * Returns the AgiReader of the AgiChannel
+     * 
+     * @return the AgiReader
+     */
+	AgiReader getReader();
+
+	/**
+     * Returns the AgiWriter of the AgiChannel
+     * 
+     * @return the AgiWriter
+     */
+	AgiWriter getWriter();
 }

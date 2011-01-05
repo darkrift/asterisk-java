@@ -18,6 +18,8 @@ package org.asteriskjava.fastagi;
 
 import org.asteriskjava.fastagi.command.AgiCommand;
 import org.asteriskjava.fastagi.internal.AgiConnectionHandler;
+import org.asteriskjava.fastagi.internal.AgiReader;
+import org.asteriskjava.fastagi.internal.AgiWriter;
 import org.asteriskjava.fastagi.reply.AgiReply;
 
 /**
@@ -485,4 +487,14 @@ public class AgiOperations implements AgiChannel
     {
     	getChannel().gosub(context, extension, priority, arguments);
     }
+
+	@Override
+	public AgiReader getReader() {
+		return getChannel().getReader();
+	}
+
+	@Override
+	public AgiWriter getWriter() {
+		return getChannel().getWriter();
+	}
 }

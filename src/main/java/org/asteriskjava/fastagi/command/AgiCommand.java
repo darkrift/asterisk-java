@@ -16,6 +16,10 @@
  */
 package org.asteriskjava.fastagi.command;
 
+import org.asteriskjava.fastagi.AgiChannel;
+import org.asteriskjava.fastagi.AgiException;
+import org.asteriskjava.fastagi.reply.AgiReply;
+
 /**
  * AgiCommand that can be sent to Asterisk via the Asterisk Gateway Interface.<p>
  * This interface contains only one method that transforms the command to a
@@ -33,4 +37,10 @@ public interface AgiCommand
      * @return a string suitable to be sent to asterisk.
      */
     String buildCommand();
+    
+    
+    /**
+     * Executes the command on the specified AgiChannel
+     */
+    AgiReply execute(AgiChannel channel) throws AgiException;
 }

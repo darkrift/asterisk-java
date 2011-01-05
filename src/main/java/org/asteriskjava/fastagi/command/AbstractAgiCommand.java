@@ -18,6 +18,10 @@ package org.asteriskjava.fastagi.command;
 
 import java.io.Serializable;
 
+import org.asteriskjava.fastagi.AgiChannel;
+import org.asteriskjava.fastagi.AgiException;
+import org.asteriskjava.fastagi.reply.AgiReply;
+
 /**
  * Abstract base class that provides some convenience methods for 
  * implementing AgiCommand classes.
@@ -87,5 +91,11 @@ public abstract class AbstractAgiCommand implements Serializable, AgiCommand
         sb.append("systemHashcode=").append(System.identityHashCode(this)).append("]");
 
         return sb.toString();
+    }
+    
+    @Override
+    public AgiReply execute(AgiChannel channel) throws AgiException {
+    	channel.getWriter().sendCommand(this);
+    	return channel.getReader().readReply();
     }
 }

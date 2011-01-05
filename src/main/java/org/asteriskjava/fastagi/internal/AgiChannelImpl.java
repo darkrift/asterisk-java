@@ -68,8 +68,8 @@ public class AgiChannelImpl implements AgiChannel
 
     public synchronized AgiReply sendCommand(AgiCommand command) throws AgiException
     {
-        agiWriter.sendCommand(command);
-        lastReply = agiReader.readReply();
+        
+        lastReply = command.execute(this);
 
         if (lastReply.getStatus() == AgiReply.SC_INVALID_OR_UNKNOWN_COMMAND)
         {
@@ -507,5 +507,15 @@ public class AgiChannelImpl implements AgiChannel
     public void gosub(String context, String extension, String priority, String... arguments) throws AgiException
     {
         sendCommand(new GosubCommand(context, extension, priority, arguments));
+    }
+    
+    @Override
+    public AgiReader getReader() {
+    	return agiReader;
+    }
+    
+    @Override
+    public AgiWriter getWriter() {
+    	return agiWriter;
     }
 }
